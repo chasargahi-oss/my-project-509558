@@ -2,13 +2,6 @@
 
 **Running head:** Species identity and soil carbon in a hyper-arid plantation
 
-**Alireza Hemmati^1,\* and Shiva Yousefi^2**
-
-^1^ Department of Environmental Science, Islamic Azad University, Bushehr Branch, Bushehr, Iran
-^2^ [Affiliation to be confirmed]
-
-\* Corresponding author: [email]
-
 ## Abstract
 
 **Purpose** Industrial plantations on hyper-arid coasts are expanding, yet their soil organic carbon (SOC) is largely unquantified and species selection still rests on the native–introduced distinction, a label rather than a functional trait. We asked how much SOC variation beneath such planting is attributable to species identity and how much to provenance.
@@ -150,8 +143,6 @@ For plantation design the implication is direct: select species on measured perf
 **Consent to publish** Not applicable (no identifiable human data).
 
 **Data availability** The complete record of the 36 samples is provided as Electronic Supplementary Material (Table S1) with this submission and will be archived in a public repository (Figshare) with a DOI upon acceptance. Analysis code (Python 3.13) is provided with the data.
-
-**Author contributions** A.H. designed the study, carried out the field sampling, performed the statistical analysis and wrote the manuscript. S.Y. contributed to laboratory analysis and to the revision of the manuscript. Both authors read and approved the final version.
 
 ## References
 
@@ -409,6 +400,4 @@ Table 8. Indicative soil organic carbon stocks (Mg C ha^−1^) by species and de
 
 **Fig. 5** Principal component analysis of the standardised soil properties. Variable loadings on the first two components, which together explain 89% of the variance. The first axis is a texture axis (sand positive; silt and clay negative) and the second is dominated by organic carbon, so the near-orthogonality of the two axes shows that the carbon signal is not a passive reflection of particle size
 
-## Pre-submission checklist (remove before upload)
 
-Three items are operational rather than scientific and must be completed from the field and institutional record before submission: (i) the distance of the sampling point from the trunk and the number of cores composited per sample (Soil sampling); (ii) the planting year, spacing and irrigation regime of each stand (Experimental design and treatments); and (iii) the second author's affiliation and the corresponding e-mail address (title block). In addition, every DOI should be checked against Crossref, and Table S1 (the 36-sample record) must accompany the submission as Online Resource 1.

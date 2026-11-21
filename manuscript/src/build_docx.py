@@ -272,20 +272,76 @@ def build(md_path, docx_path, title_page=True, line_numbers=True,
     return docx_path
 
 
+def build_figures_doc(out_path):
+    """One figure per page, numbered, caption beneath."""
+    doc = Document()
+    sec = doc.sections[0]
+    sec.page_width, sec.page_height = Cm(21.0), Cm(29.7)
+    for m in ("left_margin", "right_margin", "top_margin", "bottom_margin"):
+        setattr(sec, m, Cm(2.5))
+    normal = doc.styles["Normal"]
+    normal.font.name = BODY_FONT
+    normal.font.size = BODY_SIZE
+    add_page_number_footer(sec, "Figures")
+
+    md = (ROOT / "src" / "Revised_Manuscript.md").read_text(encoding="utf-8")
+    caps = {}
+    for ln in md.splitlines():
+        m = re.match(r"\*\*Fig\.\s*(\d+)\*\*\s*(.*)", ln.strip())
+        if m:
+            caps[int(m.group(1))] = m.group(2)
+
+    h = doc.add_heading(level=2)
+    add_runs(h, "Figures", size=Pt(13), base_bold=True)
+    for r in h.runs:
+        r.font.color.rgb = RGBColor(0, 0, 0)
+
+    numbers = sorted(caps)
+    for k, num in enumerate(numbers):
+        f = FIGDIR / f"Figure{num}.png"
+        if not f.exists():
+            continue
+        if k:
+            doc.add_page_break()
+        lab = doc.add_paragraph()
+        lab.paragraph_format.space_after = Pt(6)
+        r = lab.add_run(f"Figure {num}")
+        r.bold = True
+        r.font.size = Pt(11)
+        r.font.name = BODY_FONT
+        p = doc.add_paragraph()
+        p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        p.add_run().add_picture(str(f), width=Cm(15.5) if num != 5 else Cm(10.5))
+        cp = doc.add_paragraph()
+        cp.paragraph_format.space_before = Pt(8)
+        cp.paragraph_format.line_spacing = 1.15
+        rr = cp.add_run(f"Fig. {num} ")
+        rr.bold = True
+        rr.font.size = Pt(10)
+        rr.font.name = BODY_FONT
+        add_runs(cp, caps[num], size=Pt(10))
+    doc.save(out_path)
+    return out_path
+
+
 if __name__ == "__main__":
     src = ROOT / "src"
-    outs = []
-    outs.append(build(src / "Revised_Manuscript.md",
-                      ROOT / "Revised_Manuscript_JSSP.docx",
-                      first_header="Species identity and soil organic carbon — revised manuscript",
-                      line_numbers=True, double_space=True))
-    outs.append(build(src / "Response_to_Editor.md",
-                      ROOT / "Response_to_Editor.docx",
-                      first_header="Response to the Editor — JSSP-S-26-04304",
-                      line_numbers=False, double_space=False))
-    outs.append(build(src / "Cover_Letter.md",
-                      ROOT / "Cover_Letter.docx",
+    made = []
+    made.append(build(src / "Cover_Letter.md", ROOT / "00_Cover_Letter.docx",
                       first_header="Cover letter — JSSP-S-26-04304",
                       line_numbers=False, double_space=False))
-    for o in outs:
-        print("wrote", o)
+    made.append(build(src / "Title_Page.md", ROOT / "01_Title_Page.docx",
+                      first_header="Title page — JSSP-S-26-04304",
+                      line_numbers=False, double_space=False))
+    made.append(build(src / "Revised_Manuscript.md", ROOT / "02_Revised_Manuscript.docx",
+                      first_header="Species identity and soil organic carbon — revised manuscript",
+                      line_numbers=True, double_space=True))
+    made.append(build(src / "Response_to_Editor.md", ROOT / "03_Response_to_Editor.docx",
+                      first_header="Response to the Editor — JSSP-S-26-04304",
+                      line_numbers=False, double_space=False))
+    made.append(build_figures_doc(ROOT / "04_Figures.docx"))
+    made.append(build(ROOT / "HANDOVER.md", ROOT / "05_Revision_Notes.docx",
+                      first_header="Revision notes (not for submission)",
+                      line_numbers=False, double_space=False))
+    for m in made:
+        print("wrote", m)

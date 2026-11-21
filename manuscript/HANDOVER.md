@@ -51,6 +51,15 @@ Beyond that, the two changes that would most increase the chance of acceptance a
 
 The paper as revised fits, in descending order of fit: *Plant and Soil* (structured abstract already matches its format), *Journal of Arid Environments*, *Arid Land Research and Management*, *Forests*, *Ecological Engineering* (if the dust-suppression service is foregrounded), or *Carbon Management*. The 45 km² industrial-zone framing plays well to *Environmental Science and Pollution Research* or *Environmental Monitoring and Assessment*, but the soil-science contribution would be less visible there.
 
+## Pre-submission checklist
+
+1. Distance of the sampling point from the trunk, and the number of cores composited per sample (Methods, Soil sampling).
+2. Planting year, spacing and irrigation regime for each of the six stands (Methods, Experimental design and treatments).
+3. S. Yousefi's affiliation, both ORCIDs, and the corresponding e-mail and telephone (Title page).
+4. A final Crossref check of every DOI, and completion of the Lázaro-Lobo et al. (2025) entry if the proofs differ.
+5. Table S1 (the 36-sample record) as Online Resource 1, together with the analysis scripts.
+6. Confirm the artificial-intelligence declaration on the title page.
+
 ## A note on the numbers
 
 Every figure in the manuscript traces to a cell in the submitted tables. Where a quantity was derived for this revision it is arithmetic on the published values and is labelled as such: the per-df R² values and the nested partition in Table 7, the 1.2 and 1.6 g cm⁻³ columns in Table 8, the 21.1 and 28.5 Mg C ha⁻¹ increment means, and the 10.2–14.3% clay range. No new measurements have been introduced.
